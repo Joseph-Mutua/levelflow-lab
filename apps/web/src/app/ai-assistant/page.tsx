@@ -1,3 +1,5 @@
+import { AiAssistantPanel } from "../../components/ai-assistant-panel";
+
 export default function AiAssistantPage() {
-  return <main className="screen-grid">AI assistant coming online.</main>;
+  return <AiAssistantPanel />;
 }
