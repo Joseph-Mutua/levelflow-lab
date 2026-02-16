@@ -1,3 +1,5 @@
+import { BlastRadiusPreview } from "../../components/blast-radius-preview";
+
 export default function BlastRadiusPage() {
-  return <main className="screen-grid">Blast radius preview coming online.</main>;
+  return <BlastRadiusPreview />;
 }
