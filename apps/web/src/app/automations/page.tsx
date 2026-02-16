@@ -1,3 +1,5 @@
+import { AutomationBuilder } from "../../components/automation-builder";
+
 export default function AutomationsPage() {
-  return <main className="screen-grid">Automation builder coming online.</main>;
+  return <AutomationBuilder />;
 }
