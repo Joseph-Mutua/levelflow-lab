@@ -18,6 +18,7 @@ import {
   Workflow
 } from "lucide-react";
 import type { ReactNode } from "react";
+import { LiveActivityDrawer } from "./live-activity-drawer";
 
 const navItems = [
   { href: "/", label: "Overview", icon: Gauge },
@@ -105,6 +106,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
 
         <div className="workspace-content">{children}</div>
+        <LiveActivityDrawer />
       </div>
     </div>
   );
