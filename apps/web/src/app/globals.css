@@ -742,8 +742,43 @@ a {
 }
 
 .validation-drawer {
-  display: flex;
+  display: grid;
   gap: 12px;
+  grid-template-columns: minmax(360px, 1.1fr) minmax(260px, 0.8fr) minmax(260px, 0.8fr);
+}
+
+.lineage-map {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+}
+
+.lineage-title {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.lineage-row {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 120px 1fr 1fr;
+}
+
+.lineage-row code {
+  color: var(--cyan);
+  font-size: 11px;
+}
+
+.lineage-row span,
+.lineage-row strong {
+  color: var(--text-soft);
+  font-size: 11px;
 }
 
 .validation-item {
@@ -753,7 +788,6 @@ a {
   border-radius: var(--radius);
   color: #ffe7ba;
   display: flex;
-  flex: 1;
   font-size: 12px;
   gap: 9px;
   padding: 12px;
@@ -803,13 +837,17 @@ a {
   }
 
   .builder-toolbar,
-  .builder-toolbar-actions,
-  .validation-drawer {
+  .builder-toolbar-actions {
     align-items: stretch;
     flex-direction: column;
   }
 
   .builder-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-drawer,
+  .lineage-row {
     grid-template-columns: 1fr;
   }
 }

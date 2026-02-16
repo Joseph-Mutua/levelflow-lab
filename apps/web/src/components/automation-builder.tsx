@@ -154,6 +154,20 @@ export function AutomationBuilder() {
       </section>
 
       <Panel className="validation-drawer panel-inner">
+        <div className="lineage-map">
+          <span className="lineage-title">Variable lineage</span>
+          {[
+            ["preflightOk", "Preflight device health", "Install approved updates"],
+            ["lastPatchResult", "Install approved updates", "Send rollout report"],
+            ["rebootRequired", "Install approved updates", "Reboot if required"]
+          ].map(([variable, producedBy, consumedBy]) => (
+            <div className="lineage-row" key={variable}>
+              <code>{variable}</code>
+              <span>{producedBy}</span>
+              <strong>{consumedBy}</strong>
+            </div>
+          ))}
+        </div>
         <div className="validation-item">
           <AlertTriangle size={16} />
           <span>Reboot branch affects SERVER-tagged devices. Confirm maintenance window before publish.</span>
