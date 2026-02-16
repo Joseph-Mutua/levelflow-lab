@@ -1014,6 +1014,126 @@ a {
   margin: 8px 0 0;
 }
 
+.replay-screen {
+  display: grid;
+  gap: 14px;
+}
+
+.replay-layout {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 260px minmax(0, 1fr) 320px;
+}
+
+.run-row {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 7px;
+  margin-bottom: 9px;
+  padding: 11px;
+}
+
+.run-row.active {
+  background: rgba(79, 140, 255, 0.1);
+  border-color: rgba(79, 140, 255, 0.28);
+}
+
+.run-row strong {
+  font-size: 13px;
+}
+
+.run-row span,
+.run-row small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.timeline-scrubber {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 1fr 2.4fr;
+  padding: 8px;
+}
+
+.scrub-segment {
+  background: rgba(32, 211, 194, 0.24);
+  border-radius: 6px;
+  color: #d9fffb;
+  font-size: 11px;
+  min-height: 42px;
+  padding: 10px;
+}
+
+.scrub-segment.failed {
+  background: rgba(255, 94, 108, 0.26);
+  color: #ffe0e3;
+}
+
+.replay-detail-grid,
+.log-diff-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.failure-card,
+.duration-card {
+  align-items: flex-start;
+  border-radius: var(--radius);
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+}
+
+.failure-card {
+  background: rgba(255, 94, 108, 0.12);
+  border: 1px solid rgba(255, 94, 108, 0.28);
+}
+
+.duration-card {
+  background: rgba(79, 140, 255, 0.11);
+  border: 1px solid rgba(79, 140, 255, 0.25);
+}
+
+.failure-card p,
+.duration-card p {
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 6px 0 0;
+}
+
+.diff-list,
+.replay-side {
+  display: grid;
+  gap: 10px;
+}
+
+.diff-list div,
+.failure-pattern,
+.snapshot-row {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  display: flex;
+  font-size: 12px;
+  gap: 8px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.snapshot-row span,
+.failure-pattern span {
+  color: var(--muted);
+}
+
 @media (max-width: 980px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -1066,7 +1186,10 @@ a {
   .blast-layout,
   .blast-donut,
   .simulation-layout,
-  .io-grid {
+  .io-grid,
+  .replay-layout,
+  .replay-detail-grid,
+  .log-diff-grid {
     grid-template-columns: 1fr;
   }
 }
