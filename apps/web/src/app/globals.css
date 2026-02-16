@@ -450,6 +450,129 @@ a {
   gap: 14px;
 }
 
+.screen-title {
+  align-items: end;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.screen-title h2 {
+  font-size: 24px;
+  letter-spacing: 0;
+  margin: 5px 0 0;
+}
+
+.screen-title p {
+  color: var(--muted);
+  margin: 7px 0 0;
+}
+
+.filter-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.fleet-grid-main {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.8fr);
+}
+
+.fleet-grid-secondary {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.8fr) minmax(300px, 0.8fr);
+}
+
+.chart-frame {
+  height: 260px;
+}
+
+.donut-layout {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  min-height: 230px;
+}
+
+.legend-stack,
+.activity-list {
+  display: grid;
+  gap: 10px;
+}
+
+.legend-row {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 10px 1fr auto;
+}
+
+.legend-row span {
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+}
+
+.legend-row strong {
+  font-size: 12px;
+}
+
+.legend-row em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.muted-line {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.status-cell {
+  align-items: center;
+  display: inline-flex;
+  gap: 7px;
+  text-transform: capitalize;
+}
+
+.activity-item {
+  align-items: start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 26px 1fr;
+  padding: 10px;
+}
+
+.activity-index {
+  align-items: center;
+  background: rgba(79, 140, 255, 0.13);
+  border: 1px solid rgba(79, 140, 255, 0.28);
+  border-radius: 6px;
+  color: #d8e5ff;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 800;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+
+.activity-item p {
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 0;
+}
+
 @media (max-width: 980px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -473,6 +596,18 @@ a {
 
   .global-search {
     width: 100%;
+  }
+
+  .screen-title,
+  .fleet-grid-main,
+  .fleet-grid-secondary,
+  .donut-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-title {
+    align-items: start;
+    flex-direction: column;
   }
 }
 
