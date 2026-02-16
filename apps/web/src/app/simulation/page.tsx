@@ -1,3 +1,5 @@
+import { SimulationConsole } from "../../components/simulation-console";
+
 export default function SimulationPage() {
-  return <main className="screen-grid">Simulation console coming online.</main>;
+  return <SimulationConsole />;
 }
