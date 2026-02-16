@@ -1,0 +1,21 @@
+{
+  "name": "levelflow-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Simulation, blast-radius analysis, and run-debugging workspace for IT automations.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @levelflow/web",
+    "build": "npm run build --workspace @levelflow/web",
+    "lint": "npm run lint --workspace @levelflow/web",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "tsc -b packages/workflow-engine packages/mock-data packages/graphql-schema apps/api"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
