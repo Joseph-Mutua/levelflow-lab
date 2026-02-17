@@ -6,6 +6,9 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "test": "echo \"workflow-engine tests are not configured yet\""
+    "test": "vitest run --pool=threads"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }
