@@ -451,7 +451,7 @@ a {
 }
 
 .screen-title {
-  align-items: end;
+  align-items: flex-end;
   display: flex;
   gap: 18px;
   justify-content: space-between;

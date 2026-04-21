@@ -11,7 +11,17 @@ import {
   type Node,
   type NodeProps
 } from "@xyflow/react";
-import { AlertTriangle, Bell, Braces, GitBranch, Play, Save, ShieldAlert, Zap } from "lucide-react";
+import {
+  AlertTriangle,
+  Bell,
+  Braces,
+  GitBranch,
+  type LucideIcon,
+  Play,
+  Save,
+  ShieldAlert,
+  Zap
+} from "lucide-react";
 import { workflows } from "@levelflow/mock-data";
 import type { ActionNode } from "@levelflow/workflow-engine";
 import { Badge, Panel, SectionHeading } from "./ui";
@@ -25,6 +35,12 @@ type FlowNodeData = {
 };
 
 const workflow = workflows[0];
+const paletteBlocks: Array<[string, string, LucideIcon]> = [
+  ["Schedule trigger", "Run at maintenance windows", Zap],
+  ["Alert remediation", "Start from monitor breach", ShieldAlert],
+  ["Run script", "PowerShell, Bash, or shell", Braces],
+  ["Notify technician", "Email, Slack, or webhook", Bell]
+];
 
 const nodes: Node<FlowNodeData>[] = [
   {
@@ -38,21 +54,26 @@ const nodes: Node<FlowNodeData>[] = [
       chips: ["Sun 02:00", "all customers"]
     }
   },
-  ...workflow.actions.map((action, index) => ({
-    id: action.id,
-    type: "flowNode",
-    position: { x: 360 + index * 270, y: index === 2 ? 230 : 120 },
-    data: {
-      title: action.name,
-      subtitle: `${action.type} / ${action.estimatedSeconds}s`,
-      kind: action.type === "notify" ? "notify" : action.type === "branch" ? "branch" : "action",
-      risk: action.risk,
-      chips: [
-        ...action.conditions.map((condition) => condition.label),
-        ...(action.retryPolicy ? [`${action.retryPolicy.attempts} retries`] : [])
-      ].slice(0, 3)
-    }
-  }))
+  ...workflow.actions.map((action, index): Node<FlowNodeData> => {
+    const kind: FlowNodeData["kind"] =
+      action.type === "notify" ? "notify" : action.type === "branch" ? "branch" : "action";
+
+    return {
+      id: action.id,
+      type: "flowNode",
+      position: { x: 360 + index * 270, y: index === 2 ? 230 : 120 },
+      data: {
+        title: action.name,
+        subtitle: `${action.type} / ${action.estimatedSeconds}s`,
+        kind,
+        risk: action.risk,
+        chips: [
+          ...action.conditions.map((condition) => condition.label),
+          ...(action.retryPolicy ? [`${action.retryPolicy.attempts} retries`] : [])
+        ].slice(0, 3)
+      }
+    };
+  })
 ];
 
 const edges: Edge[] = [
@@ -99,13 +120,7 @@ export function AutomationBuilder() {
       <section className="builder-layout">
         <Panel className="builder-palette panel-inner">
           <SectionHeading kicker="Library" title="Blocks" description="Drag triggers and actions into the staged workflow." />
-          {[
-            ["Schedule trigger", "Run at maintenance windows", Zap],
-            ["Alert remediation", "Start from monitor breach", ShieldAlert],
-            ["Run script", "PowerShell, Bash, or shell", Braces],
-            ["Notify technician", "Email, Slack, or webhook", Bell]
-          ].map(([title, detail, Icon]) => {
-            const BlockIcon = Icon as typeof Zap;
+          {paletteBlocks.map(([title, detail, BlockIcon]) => {
             return (
               <div className="palette-block" key={String(title)}>
                 <BlockIcon size={16} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { Activity, ChevronDown, ChevronUp } from "lucide-react";
-import { useFlowLabStore } from "../state/use-flowlab-store";
+import { type FlowLabState, useFlowLabStore } from "../state/use-flowlab-store";
 
 const toneClass = {
   info: "blue",
@@ -11,9 +11,11 @@ const toneClass = {
 };
 
 export function LiveActivityDrawer() {
-  const drawerOpen = useFlowLabStore((state) => state.drawerOpen);
-  const toggleDrawer = useFlowLabStore((state) => state.toggleDrawer);
-  const liveEvents = useFlowLabStore((state) => state.liveEvents);
+  const drawerOpen = useFlowLabStore((state: FlowLabState) => state.drawerOpen);
+  const toggleDrawer = useFlowLabStore((state: FlowLabState) => state.toggleDrawer);
+  const liveEvents = useFlowLabStore(
+    (state: FlowLabState) => state.liveEvents
+  ) as FlowLabState["liveEvents"];
 
   return (
     <section className={drawerOpen ? "live-drawer open" : "live-drawer"}>
@@ -24,7 +26,7 @@ export function LiveActivityDrawer() {
       </button>
       {drawerOpen ? (
         <div className="live-drawer-events">
-          {liveEvents.map((event) => (
+          {liveEvents.map((event: FlowLabState["liveEvents"][number]) => (
             <div className="live-event" key={event.id}>
               <span className={`dot ${toneClass[event.severity]}`} />
               <strong>{event.at}</strong>

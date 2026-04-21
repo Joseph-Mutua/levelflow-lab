@@ -9,7 +9,7 @@ export type LiveEvent = {
   message: string;
 };
 
-type FlowLabState = {
+export type FlowLabState = {
   selectedDeviceId: string;
   selectedWorkflowId: string;
   drawerOpen: boolean;
@@ -18,6 +18,12 @@ type FlowLabState = {
   toggleDrawer: () => void;
   pushEvent: (event: LiveEvent) => void;
 };
+
+type StoreSetter = (
+  partial:
+    | Partial<FlowLabState>
+    | ((state: FlowLabState) => Partial<FlowLabState>)
+) => void;
 
 const initialEvents: LiveEvent[] = [
   {
@@ -40,15 +46,15 @@ const initialEvents: LiveEvent[] = [
   }
 ];
 
-export const useFlowLabStore = create<FlowLabState>((set) => ({
+export const useFlowLabStore = create<FlowLabState>((set: StoreSetter) => ({
   selectedDeviceId: "dev-006",
   selectedWorkflowId: "wf-patch-rollout",
   drawerOpen: true,
   liveEvents: initialEvents,
-  setSelectedDeviceId: (deviceId) => set({ selectedDeviceId: deviceId }),
-  toggleDrawer: () => set((state) => ({ drawerOpen: !state.drawerOpen })),
-  pushEvent: (event) =>
-    set((state) => ({
+  setSelectedDeviceId: (deviceId: string) => set({ selectedDeviceId: deviceId }),
+  toggleDrawer: () => set((state: FlowLabState) => ({ drawerOpen: !state.drawerOpen })),
+  pushEvent: (event: LiveEvent) =>
+    set((state: FlowLabState) => ({
       liveEvents: [event, ...state.liveEvents].slice(0, 8)
     }))
 }));
